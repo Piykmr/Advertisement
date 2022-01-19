@@ -38,7 +38,7 @@
                 app:layout_constraintTop_toBottomOf="@+id/activity3bag" />
 
             <Button
-                android:id="@+id/button"
+                android:id="@+id/addToCart"
                 android:layout_width="139dp"
                 android:layout_height="39dp"
                 android:layout_marginBottom="220dp"
@@ -99,7 +99,7 @@
                 android:layout_width="105dp"
                 android:layout_height="80dp"
                 android:layout_marginBottom="236dp"
-                app:layout_constraintBottom_toTopOf="@+id/button"
+                app:layout_constraintBottom_toTopOf="@+id/addToCart"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintHorizontal_bias="0.47"
                 app:layout_constraintStart_toStartOf="parent"
