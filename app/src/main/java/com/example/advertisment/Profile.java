@@ -37,6 +37,7 @@ public class Profile extends AppCompatActivity {
     FirebaseUser user;
     String userID;
     Button changeProfile,resetPassword,logout;
+    ImageView home,mail,profile,cart;
     ImageView profileImage;
     private DatabaseReference mDatabase;
     private static final String USERS = "users";
@@ -55,6 +56,10 @@ public class Profile extends AppCompatActivity {
         fStore = FirebaseFirestore.getInstance();
         userID = fAuth.getCurrentUser().getUid();
         user=FirebaseAuth.getInstance().getCurrentUser();
+        home=findViewById(R.id.home);
+        mail=findViewById(R.id.mail);
+        cart=findViewById(R.id.cart);
+        profile=findViewById(R.id.profile);
 
         changeProfile.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -118,5 +123,40 @@ public class Profile extends AppCompatActivity {
                 profileImage.setImageURI(imageUri);
             }
         }
+
+
+        home.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent goToHome = new Intent(Profile.this,MainActivity.class);
+                startActivity(goToHome);
+            }
+        });
+
+        mail.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent mailbox=new Intent(Profile.this,Support.class);
+                startActivity(mailbox);
+            }
+        });
+
+
+        cart.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent goToCart = new Intent(Profile.this,Cart.class);
+                startActivity(goToCart);
+            }
+        });
+
+
+        profile.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent goToProfile = new Intent(Profile.this,Profile.class);
+                startActivity(goToProfile);
+            }
+        });
     }
 }

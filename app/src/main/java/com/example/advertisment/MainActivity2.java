@@ -65,13 +65,7 @@ public class MainActivity2 extends AppCompatActivity {
 
             }
         });
-        home.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Intent goToHome = new Intent(MainActivity2.this,MainActivity.class);
-                startActivity(goToHome);
-            }
-        });
+
         proceed.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -80,6 +74,14 @@ public class MainActivity2 extends AppCompatActivity {
                 startActivity(buy);
             }
         });
+        home.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent goToHome = new Intent(MainActivity2.this,MainActivity.class);
+                startActivity(goToHome);
+            }
+        });
+
         mail.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -87,18 +89,22 @@ public class MainActivity2 extends AppCompatActivity {
                 startActivity(mailbox);
             }
         });
+
+
         cart.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Toast.makeText(MainActivity2.this,"Your Cart is empty",Toast.LENGTH_SHORT).show();
+                Intent goToCart = new Intent(MainActivity2.this,Cart.class);
+                startActivity(goToCart);
             }
         });
+
+
         profile.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent goToHome = new Intent(MainActivity2.this,Profile.class);
-                startActivity(goToHome);
-                //  Toast.makeText(MainActivity2.this,"Please call on +91 9304521641",Toast.LENGTH_SHORT).show();
+                Intent goToProfile = new Intent(MainActivity2.this,Profile.class);
+                startActivity(goToProfile);
             }
         });
     }

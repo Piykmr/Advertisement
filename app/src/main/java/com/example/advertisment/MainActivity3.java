@@ -105,7 +105,8 @@ public class MainActivity3 extends AppCompatActivity {
         cart.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Toast.makeText(MainActivity3.this,"Your Cart is empty",Toast.LENGTH_SHORT).show();
+                Intent goToCart = new Intent(MainActivity3.this,Cart.class);
+                startActivity(goToCart);
             }
         });
 
@@ -113,8 +114,8 @@ public class MainActivity3 extends AppCompatActivity {
         profile.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent goToHome = new Intent(MainActivity3.this,Profile.class);
-                startActivity(goToHome);
+                Intent goToProfile = new Intent(MainActivity3.this,Profile.class);
+                startActivity(goToProfile);
             }
         });
 
