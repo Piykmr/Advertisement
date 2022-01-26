@@ -25,7 +25,7 @@ public class MainActivity3 extends AppCompatActivity {
     EditText printName,email,companyAddress,companyPhone;
     FirebaseAuth fAuth;
     DBHelper DB;
-    public static String wel="";
+    public static String wel="Login";
     public static TextView welcome;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -47,7 +47,7 @@ public class MainActivity3 extends AppCompatActivity {
         activity3bag.setImageResource(getIntent().getIntExtra("bagimg",0));
         cart=findViewById(R.id.cart);
         profile=findViewById(R.id.profile);
-        welcome.setText("Welcome"+" "+wel);
+
         fAuth = FirebaseAuth.getInstance();
         DB = new DBHelper(this);
 
@@ -120,7 +120,19 @@ public class MainActivity3 extends AppCompatActivity {
         });
 
 
-        //Sqlite Database code here
+       welcome.setOnClickListener(new View.OnClickListener() {
+           @Override
+           public void onClick(View v) {
+                   if (fAuth.getCurrentUser()==null){
+                       FragmentManager fm = getSupportFragmentManager();
+                       FragmentTransaction ft = fm.beginTransaction();
+                       ft.replace(R.id.frameLayout, new LoginActivity());
+                       ft.commit();
+                   } else {
+                       Toast.makeText(MainActivity3.this,"You are already logged in",Toast.LENGTH_SHORT).show();
+                   }
+           }
+       });
 
 
     }
