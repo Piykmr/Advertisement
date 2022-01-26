@@ -31,43 +31,44 @@ import com.google.firebase.firestore.FirebaseFirestore;
 import com.google.firebase.firestore.FirebaseFirestoreException;
 
 public class Profile extends AppCompatActivity {
+
     TextView profileName,profileEmail,profilePhone;
     FirebaseAuth fAuth;
     FirebaseFirestore fStore;
     FirebaseUser user;
     String userID;
-    Button changeProfile,resetPassword,logout;
-    ImageView home,mail,profile,cart;
+    Button changeProfile,resetPassword;
+    ImageView home,mail,profile,cart,logout;
     ImageView profileImage;
     private DatabaseReference mDatabase;
     private static final String USERS = "users";
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_profile);
-      profileName=findViewById(R.id.profileName);
-        profileEmail=findViewById(R.id.profileEmail);
-        profilePhone=findViewById(R.id.profilePhone);
-        changeProfile=findViewById(R.id.changeProfile);
-        resetPassword=findViewById(R.id.resetPassword);
-        profileImage=findViewById(R.id.profileImage);
-        logout=findViewById(R.id.logout);
-        fAuth = FirebaseAuth.getInstance();
-        fStore = FirebaseFirestore.getInstance();
-        userID = fAuth.getCurrentUser().getUid();
-        user=FirebaseAuth.getInstance().getCurrentUser();
-        home=findViewById(R.id.home);
-        mail=findViewById(R.id.mail);
-        cart=findViewById(R.id.cart);
-        profile=findViewById(R.id.profile);
+            setContentView(R.layout.activity_profile);
+        profileName = findViewById(R.id.profileName);
+            profileEmail = findViewById(R.id.profileEmail);
+            profilePhone = findViewById(R.id.profilePhone);
+            changeProfile = findViewById(R.id.changeProfile);
+            resetPassword = findViewById(R.id.resetPassword);
+            profileImage = findViewById(R.id.profileImage);
+            logout = findViewById(R.id.logout);
+            fAuth = FirebaseAuth.getInstance();
+            fStore = FirebaseFirestore.getInstance();
+            userID = fAuth.getCurrentUser().getUid();
+            user = FirebaseAuth.getInstance().getCurrentUser();
+            home = findViewById(R.id.home);
+            mail = findViewById(R.id.mail);
+            cart = findViewById(R.id.cart);
+            profile = findViewById(R.id.profile);
 
-        changeProfile.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Intent openGallary = new Intent(Intent.ACTION_PICK, MediaStore.Images.Media.EXTERNAL_CONTENT_URI);
-                startActivityForResult(openGallary,1000);
-            }
-        });
+            changeProfile.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    Intent openGallary = new Intent(Intent.ACTION_PICK, MediaStore.Images.Media.EXTERNAL_CONTENT_URI);
+                    startActivityForResult(openGallary, 1000);
+                }
+            });
 
 
      /* DocumentReference documentReference = fStore.collection("users").document(userID);
@@ -80,83 +81,86 @@ public class Profile extends AppCompatActivity {
             }
         });*/
 
-        DatabaseReference rootRef = FirebaseDatabase.getInstance().getReference();
-        DatabaseReference userRef = rootRef.child(USERS);
-        Log.v("USERID", userRef.getKey());
+            DatabaseReference rootRef = FirebaseDatabase.getInstance().getReference();
+            DatabaseReference userRef = rootRef.child(USERS);
+            Log.v("USERID", userRef.getKey());
 
-        userRef.addValueEventListener(new ValueEventListener() {
-            String name,email,phone;
-            @Override
-            public void onDataChange(@NonNull DataSnapshot snapshot) {
-                for(DataSnapshot keyId: snapshot.getChildren()){
-                    if(keyId.child("email").getValue().equals(email)){
-                        name=keyId.child("name").getValue(String.class);
-                        email=keyId.child("email").getValue(String.class);
-                        phone=keyId.child("phone").getValue(String.class);
-                        break;
+            userRef.addValueEventListener(new ValueEventListener() {
+                String name, email, phone;
+
+                @Override
+                public void onDataChange(@NonNull DataSnapshot snapshot) {
+                    for (DataSnapshot keyId : snapshot.getChildren()) {
+                        if (keyId.child("email").getValue().equals(email)) {
+                            name = keyId.child("name").getValue(String.class);
+                            email = keyId.child("email").getValue(String.class);
+                            phone = keyId.child("phone").getValue(String.class);
+                            break;
+                        }
                     }
+                    profileName.setText(name);
+                    profileEmail.setText(email);
+                    profilePhone.setText(phone);
                 }
-                profileName.setText(name);
-                profileEmail.setText(email);
-                profilePhone.setText(phone);
-            }
 
-            @Override
-            public void onCancelled(@NonNull DatabaseError error) {
+                @Override
+                public void onCancelled(@NonNull DatabaseError error) {
                     // Failed to read value
-                Toast.makeText(Profile.this,"Failed to load",Toast.LENGTH_SHORT).show();
-            }
-        });
-    }
-    public void logout(View view){
-        FirebaseAuth.getInstance().signOut();//logout
-        startActivity(new Intent(getApplicationContext(),MainActivity.class));
-        finish();
-    }
+                    Toast.makeText(Profile.this, "Failed to load", Toast.LENGTH_SHORT).show();
+                }
+            });
+        }
+        public void logout (View view){
+            FirebaseAuth.getInstance().signOut();//logout
+            startActivity(new Intent(getApplicationContext(), MainActivity.class));
+            finish();
+        }
 
-    @Override
-    protected void onActivityResult(int requestCode, int resultCode, @Nullable Intent data) {
-        super.onActivityResult(requestCode, resultCode, data);
-        if(requestCode==1000){
-            if(resultCode == Activity.RESULT_OK){
-                Uri imageUri = data.getData();
-                profileImage.setImageURI(imageUri);
+        @Override
+        protected void onActivityResult ( int requestCode, int resultCode, @Nullable Intent data){
+            super.onActivityResult(requestCode, resultCode, data);
+            if (requestCode == 1000) {
+                if (resultCode == Activity.RESULT_OK) {
+                    Uri imageUri = data.getData();
+                    profileImage.setImageURI(imageUri);
+                }
             }
+
+
+            home.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    Intent goToHome = new Intent(Profile.this, MainActivity.class);
+                    startActivity(goToHome);
+                }
+            });
+
+            mail.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    Intent mailbox = new Intent(Profile.this, Support.class);
+                    startActivity(mailbox);
+                }
+            });
+
+
+            cart.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    Intent goToCart = new Intent(Profile.this, Cart.class);
+                    startActivity(goToCart);
+                }
+            });
+
+
+            profile.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    Intent goToProfile = new Intent(Profile.this, Profile.class);
+                    startActivity(goToProfile);
+                }
+            });
         }
 
 
-        home.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Intent goToHome = new Intent(Profile.this,MainActivity.class);
-                startActivity(goToHome);
-            }
-        });
-
-        mail.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Intent mailbox=new Intent(Profile.this,Support.class);
-                startActivity(mailbox);
-            }
-        });
-
-
-        cart.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Intent goToCart = new Intent(Profile.this,Cart.class);
-                startActivity(goToCart);
-            }
-        });
-
-
-        profile.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Intent goToProfile = new Intent(Profile.this,Profile.class);
-                startActivity(goToProfile);
-            }
-        });
     }
-}
