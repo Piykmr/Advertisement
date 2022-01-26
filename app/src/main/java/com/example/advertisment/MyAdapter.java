@@ -5,6 +5,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.view.animation.Animation;
 import android.view.animation.AnimationUtils;
+import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -45,13 +46,18 @@ public class MyAdapter extends RecyclerView.Adapter<MyAdapter.MyViewHolder> {
 
     class MyViewHolder extends RecyclerView.ViewHolder
     {
-        TextView coname,coemail,coaddress,cophone;
+        TextView coname,coemail,coaddress,cophone,design;
+        ImageView imageView4;
         public MyViewHolder(@NonNull View itemView) {
             super(itemView);
             coname=itemView.findViewById(R.id.coname);
             coemail=itemView.findViewById(R.id.coemail);
             coaddress=itemView.findViewById(R.id.coaddress);
             cophone=itemView.findViewById(R.id.cophone);
+            imageView4=itemView.findViewById(R.id.imageView4);
+            design=itemView.findViewById(R.id.design);
+            design.setText(BagAdapter.bgname);
+            imageView4.setImageResource(BagAdapter.img);
 
         }
 

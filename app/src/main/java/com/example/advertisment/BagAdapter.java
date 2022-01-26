@@ -6,10 +6,13 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ArrayAdapter;
+import android.widget.ImageView;
 
 public class BagAdapter extends ArrayAdapter<String> {
     public static String bgname,bgprice;
-    public static int img,flag=0;
+    public static int img;
+
+
     Context context;
     int[] image;
     String[] bagName;
@@ -44,6 +47,8 @@ public class BagAdapter extends ArrayAdapter<String> {
                 bgname=bagName[position];
                 bgprice=price[position];
                 img=image[position];
+
+
                 Intent intent = new Intent(getContext(),MainActivity2.class);
                 intent.putExtra("bagName",bgname);
                 intent.putExtra("bagPrice",bgprice);

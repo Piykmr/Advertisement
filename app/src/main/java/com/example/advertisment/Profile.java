@@ -127,38 +127,26 @@ public class Profile extends AppCompatActivity {
             }
 
 
-            home.setOnClickListener(new View.OnClickListener() {
-                @Override
-                public void onClick(View v) {
-                    Intent goToHome = new Intent(Profile.this, MainActivity.class);
-                    startActivity(goToHome);
-                }
+            home.setOnClickListener(v -> {
+                Intent goToHome = new Intent(Profile.this, MainActivity.class);
+                startActivity(goToHome);
             });
 
-            mail.setOnClickListener(new View.OnClickListener() {
-                @Override
-                public void onClick(View v) {
-                    Intent mailbox = new Intent(Profile.this, Support.class);
-                    startActivity(mailbox);
-                }
+            mail.setOnClickListener(v -> {
+                Intent mailbox = new Intent(Profile.this, Support.class);
+                startActivity(mailbox);
             });
 
 
-            cart.setOnClickListener(new View.OnClickListener() {
-                @Override
-                public void onClick(View v) {
-                    Intent goToCart = new Intent(Profile.this, Cart.class);
-                    startActivity(goToCart);
-                }
+            cart.setOnClickListener(v -> {
+                Intent goToCart = new Intent(Profile.this, Cart.class);
+                startActivity(goToCart);
             });
 
 
-            profile.setOnClickListener(new View.OnClickListener() {
-                @Override
-                public void onClick(View v) {
-                    Intent goToProfile = new Intent(Profile.this, Profile.class);
-                    startActivity(goToProfile);
-                }
+            profile.setOnClickListener(v -> {
+                Intent goToProfile = new Intent(Profile.this, Profile.class);
+                startActivity(goToProfile);
             });
         }
 

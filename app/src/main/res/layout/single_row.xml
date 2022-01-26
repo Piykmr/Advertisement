@@ -63,10 +63,9 @@
             app:srcCompat="@drawable/bag19" />
 
         <TextView
-            android:id="@+id/textView4"
+            android:id="@+id/design"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:text="Design 1.1" />
+            android:layout_height="wrap_content" />
 
 
     </LinearLayout>

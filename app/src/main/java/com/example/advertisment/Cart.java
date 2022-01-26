@@ -122,7 +122,17 @@ public class Cart extends AppCompatActivity {
             public void onClick(View v) {
                 String email = "rajpiyush72@gmail.com";
                 String subject = "Customer details received";
-                String message = "hii";
+                String message = "hello You have an order of "+ BagAdapter.bgname +"\n";
+                Cursor res = DB.getdata();
+
+
+                while(res.moveToNext()){
+                    message+=("Company Name : "+res.getString(0)+"\n");
+                    message+=("Company Email : "+res.getString(1)+"\n");
+                    message+=("Company Address : "+res.getString(2)+"\n");
+                    message+=("Company Phone : "+res.getString(3)+"\n");
+                }
+
 
                 //Creating SendMail object
                 SendMail sm = new SendMail(Cart.this, email, subject, message);
