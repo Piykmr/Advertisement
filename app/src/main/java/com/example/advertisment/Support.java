@@ -47,7 +47,39 @@ public class Support extends AppCompatActivity {
         cart=findViewById(R.id.cart);
         profile=findViewById(R.id.profile);
 
+        home.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent goToHome = new Intent(Support.this,MainActivity.class);
+                startActivity(goToHome);
+            }
+        });
 
+        mail.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent mailbox=new Intent(Support.this,Support.class);
+                startActivity(mailbox);
+            }
+        });
+
+
+        cart.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent goToCart = new Intent(Support.this,Cart.class);
+                startActivity(goToCart);
+            }
+        });
+
+
+        profile.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent goToProfile = new Intent(Support.this,Profile.class);
+                startActivity(goToProfile);
+            }
+        });
 
         callMe.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -96,39 +128,7 @@ public class Support extends AppCompatActivity {
         }
 
 
-        home.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Intent goToHome = new Intent(Support.this,MainActivity.class);
-                startActivity(goToHome);
-            }
-        });
 
-        mail.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Intent mailbox=new Intent(Support.this,Support.class);
-                startActivity(mailbox);
-            }
-        });
-
-
-        cart.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Intent goToCart = new Intent(Support.this,Cart.class);
-                startActivity(goToCart);
-            }
-        });
-
-
-        profile.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Intent goToProfile = new Intent(Support.this,Profile.class);
-                startActivity(goToProfile);
-            }
-        });
     }
 
 }

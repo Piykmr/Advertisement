@@ -42,7 +42,8 @@ public class Cart extends AppCompatActivity {
     EditText editText;
     ArrayList<Model> dataholder = new ArrayList<>();
    DBHelper DB;
-    ImageView home,mail,profile,login,cart;
+    ImageView home,mail,profile,cart;
+    TextView cod;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -54,6 +55,7 @@ public class Cart extends AppCompatActivity {
         /*pay=findViewById(R.id.pay);
         update=findViewById(R.id.update);*/
         delete=findViewById(R.id.delete);
+        cod=findViewById(R.id.cod);
         pay = findViewById(R.id.pay);
         editText=findViewById(R.id.editText);
         recyclerView=findViewById(R.id.recyclerView);
@@ -72,7 +74,7 @@ public class Cart extends AppCompatActivity {
         }
        MyAdapter adapter = new MyAdapter(dataholder);
        recyclerView.setAdapter(adapter);
-
+        cod.setText("Keep Cash On Delivery " + BagAdapter.bgprice + "*" + dataholder.size());
        /* DB=new DBHelper(this);
         Cursor res = DB.getdata();
         if(res.getCount()==0){
@@ -116,33 +118,6 @@ public class Cart extends AppCompatActivity {
             }
         });
 
-
-        pay.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                String email = "rajpiyush72@gmail.com";
-                String subject = "Customer details received";
-                String message = "hello You have an order of "+ BagAdapter.bgname +"\n";
-                Cursor res = DB.getdata();
-
-
-                while(res.moveToNext()){
-                    message+=("Company Name : "+res.getString(0)+"\n");
-                    message+=("Company Email : "+res.getString(1)+"\n");
-                    message+=("Company Address : "+res.getString(2)+"\n");
-                    message+=("Company Phone : "+res.getString(3)+"\n");
-                }
-
-
-                //Creating SendMail object
-                SendMail sm = new SendMail(Cart.this, email, subject, message);
-
-                //Executing sendmail to send email
-                sm.execute();
-            }
-        });
-
-
         home.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -176,5 +151,34 @@ public class Cart extends AppCompatActivity {
                 startActivity(goToProfile);
             }
         });
+
+
+        pay.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                String email = "rajpiyush72@gmail.com";
+                String subject = "Customer details received";
+                String message = "hello You have an order of "+ BagAdapter.bgname +"\n";
+                Cursor res = DB.getdata();
+
+
+                while(res.moveToNext()){
+                    message+=("Company Name : "+res.getString(0)+"\n");
+                    message+=("Company Email : "+res.getString(1)+"\n");
+                    message+=("Company Address : "+res.getString(2)+"\n");
+                    message+=("Company Phone : "+res.getString(3)+"\n");
+                }
+
+
+                //Creating SendMail object
+                SendMail sm = new SendMail(Cart.this, email, subject, message);
+
+                //Executing sendmail to send email
+                sm.execute();
+            }
+        });
+
+
+
     }
     }

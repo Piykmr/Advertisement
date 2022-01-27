@@ -72,6 +72,7 @@ public class LoginActivity extends Fragment {
                    else
                    {
                        Toast.makeText(getActivity(),"Error ! " + task.getException().getMessage(),Toast.LENGTH_SHORT).show();
+                       progressBar2.setVisibility(View.GONE);
                    }
                 });
             }

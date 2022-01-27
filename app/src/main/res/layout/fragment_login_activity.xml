@@ -58,7 +58,7 @@
         android:layout_marginTop="16dp"
         android:text="Login"
         android:textColor="#020202"
-        app:backgroundTint="#2196F3"
+        app:backgroundTint="#009688"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.498"
         app:layout_constraintStart_toStartOf="parent"
@@ -70,19 +70,20 @@
         android:layout_height="58dp"
         android:layout_marginBottom="176dp"
         android:text="Don't have an account? Click here to register.."
-        android:textColor="#EC1010"
+        android:textColor="#0F0F10"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="1.0"
+        app:layout_constraintHorizontal_bias="0.816"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/loginbt"
-        app:layout_constraintVertical_bias="0.208" />
+        app:layout_constraintVertical_bias="0.203" />
 
     <ProgressBar
         android:id="@+id/progressBar2"
         style="?android:attr/progressBarStyle"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:background="#0E0D0D"
         android:visibility="invisible"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"

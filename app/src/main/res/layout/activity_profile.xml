@@ -114,11 +114,11 @@
         android:id="@+id/changeProfile"
         android:layout_width="174dp"
         android:layout_height="52dp"
-        android:layout_marginTop="117dp"
+        android:layout_marginTop="68dp"
         android:text="Change Profile"
         app:backgroundTint="#EA281A"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.558"
+        app:layout_constraintHorizontal_bias="0.59"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/profilePhone" />
 
@@ -132,7 +132,7 @@
         app:backgroundTint="#E11E1E"
         app:layout_constraintBottom_toTopOf="@+id/linearLayout"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.561"
+        app:layout_constraintHorizontal_bias="0.59"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/changeProfile"
         app:layout_constraintVertical_bias="0.0" />
@@ -163,13 +163,13 @@
 
     <LinearLayout
         android:id="@+id/linearLayout"
-        android:layout_width="383dp"
+        android:layout_width="match_parent"
         android:layout_height="38dp"
         android:layout_marginStart="2dp"
         android:layout_marginLeft="2dp"
         android:layout_marginEnd="3dp"
         android:layout_marginRight="3dp"
-        android:background="#B6EFEA"
+        android:background="@color/white"
 
         android:orientation="horizontal"
         app:layout_constraintBottom_toBottomOf="parent"
@@ -222,9 +222,8 @@
         android:id="@+id/logout"
         android:layout_width="48dp"
         android:layout_height="41dp"
-        android:layout_marginStart="115dp"
-        android:layout_marginTop="7dp"
-        android:layout_marginEnd="16dp"
+        android:layout_marginStart="116dp"
+        android:layout_marginTop="8dp"
         android:onClick="logout"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toEndOf="@+id/imageView9"
@@ -240,10 +239,13 @@
         android:layout_marginEnd="9dp"
         android:layout_marginBottom="9dp"
         android:text="LOGOUT"
+        android:textSize="10sp"
         android:textStyle="bold"
         app:layout_constraintBottom_toTopOf="@+id/divider4"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="1.0"
         app:layout_constraintStart_toEndOf="@+id/imageView9"
-        app:layout_constraintTop_toBottomOf="@+id/logout" />
+        app:layout_constraintTop_toBottomOf="@+id/logout"
+        app:layout_constraintVertical_bias="1.0" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

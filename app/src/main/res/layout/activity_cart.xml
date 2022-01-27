@@ -1,16 +1,17 @@
 <?xml version="1.0" encoding="utf-8"?>
 <androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:background="#357A83"
     android:padding="4dp"
     tools:context=".Cart">
 
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/recyclerView"
-        android:layout_width="399dp"
-        android:layout_height="437dp"
+        android:layout_width="396dp"
+        android:layout_height="409dp"
         android:layout_marginStart="3dp"
         android:layout_marginTop="4dp"
         android:layout_marginEnd="5dp"
@@ -21,19 +22,18 @@
 
     <LinearLayout
         android:id="@+id/linearLayout"
-        android:layout_width="383dp"
+        android:layout_width="match_parent"
         android:layout_height="38dp"
         android:layout_marginStart="2dp"
         android:layout_marginLeft="2dp"
         android:layout_marginEnd="3dp"
         android:layout_marginRight="3dp"
-        android:background="#B6EFEA"
+        android:background="@color/white"
 
         android:orientation="horizontal"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/t1"
         app:layout_constraintVertical_bias="1.0">
 
         <ImageView
@@ -94,27 +94,25 @@
         android:id="@+id/pay"
         android:layout_width="73dp"
         android:layout_height="41dp"
-        android:layout_marginTop="55dp"
         android:layout_marginBottom="16dp"
         android:text="Pay"
         app:layout_constraintBottom_toTopOf="@+id/linearLayout"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.452"
+        app:layout_constraintHorizontal_bias="0.899"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/editText" />
+        app:layout_constraintTop_toBottomOf="@+id/delete"
+        app:layout_constraintVertical_bias="0.0" />
 
     <Button
         android:id="@+id/delete"
         android:layout_width="112dp"
         android:layout_height="39dp"
         android:layout_marginStart="251dp"
-        android:layout_marginTop="16dp"
+        android:layout_marginTop="4dp"
         android:layout_marginEnd="44dp"
-        android:layout_marginBottom="64dp"
         android:text="Delete Cart"
-        app:layout_constraintBottom_toTopOf="@+id/linearLayout"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="1.0"
+        app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/editText" />
 
@@ -122,16 +120,29 @@
         android:id="@+id/editText"
         android:layout_width="316dp"
         android:layout_height="42dp"
-        android:layout_marginTop="8dp"
-        android:layout_marginBottom="3dp"
+        android:layout_marginTop="12dp"
         android:ems="10"
         android:hint="Enter Company Name Here To Delete"
         android:inputType="textPersonName"
-        app:layout_constraintBottom_toTopOf="@+id/pay"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.494"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/recyclerView"
-        app:layout_constraintVertical_bias="0.12" />
+        app:layout_constraintTop_toBottomOf="@+id/recyclerView" />
+
+    <TextView
+        android:id="@+id/cod"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginEnd="36dp"
+        android:layout_marginBottom="46dp"
+        android:text="Proceed to pay COD of RS.500"
+        android:textStyle="bold|italic"
+        app:layout_constraintBottom_toTopOf="@+id/linearLayout"
+        app:layout_constraintEnd_toStartOf="@+id/pay"
+        app:layout_constraintHorizontal_bias="1.0"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/delete"
+        app:layout_constraintVertical_bias="0.243" />
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>

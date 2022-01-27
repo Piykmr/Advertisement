@@ -44,7 +44,7 @@ public class MainActivity3 extends AppCompatActivity {
         email=findViewById(R.id.email);
         companyAddress=findViewById(R.id.companyAddress);
         companyPhone=findViewById(R.id.companyPhone);
-        activity3bag.setImageResource(getIntent().getIntExtra("bagimg",0));
+        activity3bag.setImageResource(BagAdapter.img);;
         cart=findViewById(R.id.cart);
         profile=findViewById(R.id.profile);
 
@@ -59,6 +59,10 @@ public class MainActivity3 extends AppCompatActivity {
                 str2=companyAddress.getText().toString();
                 str3=email.getText().toString();
                 int phone = Integer.parseInt(companyPhone.getText().toString());
+                if (!str3.matches("^[_A-Za-z0-9-]+(\\.[_A-Za-z0-9-]+)*@[A-Za-z0-9]+(\\.[A-Za-z0-9]+)*(\\.[A-Za-z]{2,})$")) {
+                    email.setError("Invalid Email Address");
+                    return;
+                }
                 if(str1.length()>=1 && str2.length()>=1 && str3.length()>=1) {
                     if (fAuth.getCurrentUser()==null){
                         FragmentManager fm = getSupportFragmentManager();

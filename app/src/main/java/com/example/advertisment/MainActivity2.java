@@ -41,7 +41,7 @@ public class MainActivity2 extends AppCompatActivity {
         String price1=getIntent().getStringExtra("bagPrice");
 
         t2.setText(getIntent().getStringExtra("bagPrice"));
-        imageView.setImageResource(getIntent().getIntExtra("bagImage",0));
+        imageView.setImageResource(BagAdapter.img);;
         increment.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {

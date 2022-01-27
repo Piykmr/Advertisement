@@ -5,6 +5,7 @@ import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.app.Activity;
+import android.content.Context;
 import android.content.Intent;
 import android.net.Uri;
 import android.os.Bundle;
@@ -29,6 +30,8 @@ import com.google.firebase.firestore.DocumentSnapshot;
 import com.google.firebase.firestore.EventListener;
 import com.google.firebase.firestore.FirebaseFirestore;
 import com.google.firebase.firestore.FirebaseFirestoreException;
+
+import java.io.File;
 
 public class Profile extends AppCompatActivity {
 
@@ -61,6 +64,28 @@ public class Profile extends AppCompatActivity {
             mail = findViewById(R.id.mail);
             cart = findViewById(R.id.cart);
             profile = findViewById(R.id.profile);
+
+        home.setOnClickListener(v -> {
+            Intent goToHome = new Intent(Profile.this, MainActivity.class);
+            startActivity(goToHome);
+        });
+
+        mail.setOnClickListener(v -> {
+            Intent mailbox = new Intent(Profile.this, Support.class);
+            startActivity(mailbox);
+        });
+
+
+        cart.setOnClickListener(v -> {
+            Intent goToCart = new Intent(Profile.this, Cart.class);
+            startActivity(goToCart);
+        });
+
+
+        profile.setOnClickListener(v -> {
+            Intent goToProfile = new Intent(Profile.this, Profile.class);
+            startActivity(goToProfile);
+        });
 
             changeProfile.setOnClickListener(new View.OnClickListener() {
                 @Override
@@ -116,6 +141,7 @@ public class Profile extends AppCompatActivity {
             finish();
         }
 
+
         @Override
         protected void onActivityResult ( int requestCode, int resultCode, @Nullable Intent data){
             super.onActivityResult(requestCode, resultCode, data);
@@ -127,27 +153,7 @@ public class Profile extends AppCompatActivity {
             }
 
 
-            home.setOnClickListener(v -> {
-                Intent goToHome = new Intent(Profile.this, MainActivity.class);
-                startActivity(goToHome);
-            });
 
-            mail.setOnClickListener(v -> {
-                Intent mailbox = new Intent(Profile.this, Support.class);
-                startActivity(mailbox);
-            });
-
-
-            cart.setOnClickListener(v -> {
-                Intent goToCart = new Intent(Profile.this, Cart.class);
-                startActivity(goToCart);
-            });
-
-
-            profile.setOnClickListener(v -> {
-                Intent goToProfile = new Intent(Profile.this, Profile.class);
-                startActivity(goToProfile);
-            });
         }
 
 
