@@ -14,17 +14,20 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.Advertisment">
         <activity
+            android:name=".Admin"
+            android:exported="false" />
+        <activity
             android:name=".FrontActivity"
             android:exported="true">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
+
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
         <activity
             android:name=".MainActivity"
-            android:exported="true">
-        </activity>
+            android:exported="true"></activity>
         <activity
             android:name=".Support"
             android:exported="true"
@@ -45,7 +48,6 @@
             android:name=".MainActivity2"
             android:exported="true"
             android:parentActivityName=".MainActivity" />
-
     </application>
 
 </manifest>
