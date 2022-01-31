@@ -4,21 +4,23 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="#B6EFEA"
     tools:context=".MainActivity">
 
 
     <ListView
         android:id="@+id/listView"
-        android:layout_width="408dp"
-        android:layout_height="500dp"
+        android:layout_width="407dp"
+        android:layout_height="509dp"
+        android:layout_marginTop="22dp"
         android:layout_marginBottom="4dp"
         android:background="#B6EFEA"
         app:layout_constraintBottom_toTopOf="@+id/linearLayout"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.666"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/ClickOrder"
-        app:layout_constraintVertical_bias="1.0" />
+        app:layout_constraintTop_toBottomOf="@+id/linearLayout2"
+        app:layout_constraintVertical_bias="0.0" />
 
     <LinearLayout
         android:id="@+id/linearLayout"
@@ -62,6 +64,7 @@
             app:srcCompat="@drawable/support" />
 
     </LinearLayout>
+
     <ImageView
         android:id="@+id/imageView5"
         android:layout_width="57dp"
@@ -86,25 +89,34 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/imageView5" />
 
-    <TextView
-        android:id="@+id/ClickOrder"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="40dp"
-        android:layout_marginEnd="60dp"
-        android:fontFamily="sans-serif-medium"
-        android:text="Click Here To Add Your Own Bag"
+    <LinearLayout
+        android:id="@+id/linearLayout2"
+        android:layout_width="409dp"
+        android:layout_height="63dp"
+        android:layout_marginStart="1dp"
+        android:background="@color/white"
+        android:orientation="horizontal"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toEndOf="@+id/imageView15"
-        app:layout_constraintTop_toBottomOf="@+id/divider" />
-
-    <ImageView
-        android:id="@+id/imageView15"
-        android:layout_width="63dp"
-        android:layout_height="54dp"
-        android:layout_marginStart="60dp"
-        android:layout_marginTop="24dp"
+        app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/divider"
-        app:srcCompat="@drawable/uploadimg" />
+        app:layout_constraintTop_toBottomOf="@+id/divider">
+
+        <ImageView
+            android:id="@+id/imageView15"
+            android:layout_width="47dp"
+            android:layout_height="40dp"
+            android:layout_marginStart="72dp"
+            android:layout_marginTop="4dp"
+            app:srcCompat="@drawable/uploadimg" />
+
+        <TextView
+            android:id="@+id/ClickOrder"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="12dp"
+            android:layout_marginEnd="60dp"
+            android:fontFamily="sans-serif-medium"
+            android:text="Click Here To Add Your Own Bag"
+            android:textColor="#191717" />
+    </LinearLayout>
 </androidx.constraintlayout.widget.ConstraintLayout>
