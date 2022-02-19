@@ -25,8 +25,11 @@ import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.firestore.DocumentReference;
 import com.google.firebase.firestore.FirebaseFirestore;
+import com.google.firebase.storage.StorageReference;
 
 import java.util.HashMap;
 import java.util.Map;
@@ -37,6 +40,7 @@ public class RegistrationActivity extends Fragment {
     ProgressBar progressBar;
     FirebaseAuth fAuth;
     FirebaseFirestore fstore;
+    private DatabaseReference root = FirebaseDatabase.getInstance().getReference("UsersDetails");
     String userID;
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
@@ -57,7 +61,7 @@ public class RegistrationActivity extends Fragment {
                 String name = nameR.getText().toString();
                 String email = emailR.getText().toString().trim();
                 String password = passR.getText().toString().trim();
-               int phone = Integer.parseInt(mobileR.getText().toString());
+               String phone = mobileR.getText().toString().trim();
               if(TextUtils.isEmpty(name)){
                   nameR.setError("Name is Requires");
               }
@@ -67,10 +71,17 @@ public class RegistrationActivity extends Fragment {
               if(TextUtils.isEmpty(password)){
                   passR.setError("Password is Requires");
               }
+                if(TextUtils.isEmpty(phone)){
+                    mobileR.setError("Mobile Number is Requires");
+                }
               if(password.length() < 6){
                   passR.setError("Password must be >= 6 Characters");
                   return;
               }
+                if(phone.length() !=10){
+                    mobileR.setError("Mobile must be 10 digits");
+                    return;
+                }
               progressBar.setVisibility(View.VISIBLE);
 
               // register the user in firebase
@@ -79,20 +90,17 @@ public class RegistrationActivity extends Fragment {
                         if(task.isSuccessful()){
                             Toast.makeText(getActivity(),"User created",Toast.LENGTH_SHORT).show();
                             userID = fAuth.getCurrentUser().getUid();
-                            DocumentReference documentReference = fstore.collection("users").document(userID);
-                            Map<String,Object> user = new HashMap<>();
-                            user.put("name_",name);
-                            user.put("email_",email);
-                            user.put("phone_",phone);
-                            documentReference.set(user).addOnSuccessListener((OnSuccessListener) (aVoid) -> {
-                                Log.d(TAG,"onSuccess: user profile is created for " + userID);
-                            }).addOnFailureListener(new OnFailureListener() {
-                                @Override
-                                public void onFailure(@NonNull Exception e) {
-                                    Log.d(TAG,"onFailure: " + e.toString());
-                                }
-                            });
-                            startActivity(new Intent(getActivity().getApplicationContext(),MainActivity3.class));
+                            uploadFirebase();
+
+                                startActivity(new Intent(getActivity().getApplicationContext(),Profile.class));
+
+                            try {
+                                Thread.sleep(1000);
+                            } catch (InterruptedException e) {
+                                e.printStackTrace();
+                            }
+
+                                startActivity(new Intent(getActivity().getApplicationContext(),MainActivity3.class));
                         }
                         else
                         {
@@ -109,4 +117,19 @@ public class RegistrationActivity extends Fragment {
 
         return v;
     }
+
+
+    private void uploadFirebase()
+    {
+        String name = nameR.getText().toString();
+        String email = emailR.getText().toString().trim();
+        String phone = mobileR.getText().toString();
+        String password = passR.getText().toString().trim();
+                @SuppressWarnings("VisibleForTests")
+                Regst regst = new Regst(name, email, password,phone);
+                String uploadId = root.push().getKey();
+                root.child(uploadId).setValue(regst);
+        }
+
+
 }

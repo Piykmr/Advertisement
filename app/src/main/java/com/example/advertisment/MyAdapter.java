@@ -36,7 +36,8 @@ public class MyAdapter extends RecyclerView.Adapter<MyAdapter.MyViewHolder> {
         holder.coemail.setText(dataholder.get(position).getEmail());
         holder.coaddress.setText(dataholder.get(position).getAddress());
        // holder.cophone.setText(dataholder.get(position).getPhone());
-
+        holder.design.setText(dataholder.get(position).getDesign());
+        holder.imageView4.setImageResource(dataholder.get(position).getImage());
     }
 
     @Override
@@ -56,8 +57,7 @@ public class MyAdapter extends RecyclerView.Adapter<MyAdapter.MyViewHolder> {
             cophone=itemView.findViewById(R.id.cophone);
             imageView4=itemView.findViewById(R.id.imageView4);
             design=itemView.findViewById(R.id.design);
-            design.setText(BagAdapter.bgname);
-            imageView4.setImageResource(BagAdapter.img);
+            //imageView4.setImageResource(BagAdapter.img);
 
         }
 

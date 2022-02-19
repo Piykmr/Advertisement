@@ -5,12 +5,10 @@ import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.app.Activity;
-import android.content.Context;
 import android.content.Intent;
 import android.net.Uri;
 import android.os.Bundle;
 import android.provider.MediaStore;
-import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.ImageView;
@@ -24,31 +22,43 @@ import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
-import com.google.firebase.database.core.Tag;
-import com.google.firebase.firestore.DocumentReference;
-import com.google.firebase.firestore.DocumentSnapshot;
-import com.google.firebase.firestore.EventListener;
 import com.google.firebase.firestore.FirebaseFirestore;
-import com.google.firebase.firestore.FirebaseFirestoreException;
+import com.google.firebase.storage.FirebaseStorage;
+import com.google.firebase.storage.StorageReference;
 
-import java.io.File;
+import java.util.ArrayList;
 
 public class Profile extends AppCompatActivity {
 
     TextView profileName,profileEmail,profilePhone;
-    FirebaseAuth fAuth;
+    FirebaseAuth fAuth = FirebaseAuth.getInstance();;
     FirebaseFirestore fStore;
     FirebaseUser user;
+    DatabaseReference databaseReference;
+    StorageReference storageReference;
     String userID;
     Button changeProfile,resetPassword;
     ImageView home,mail,profile,cart,logout;
     ImageView profileImage;
+    String userEmail;
+    public static ArrayList<String> name = new ArrayList<>();
+    public static ArrayList<String> email = new ArrayList<>();
+    public static ArrayList<String> phone = new ArrayList<>();
     private DatabaseReference mDatabase;
     private static final String USERS = "users";
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        if(fAuth.getCurrentUser()==null)
+        {
+            Intent intent = new Intent(Profile.this, IfEmpty.class);
+            startActivity(intent);
+            finish();
+            Toast.makeText(Profile.this, "Not Logged In", Toast.LENGTH_SHORT).show();
+            return;
+        }
             setContentView(R.layout.activity_profile);
+
         profileName = findViewById(R.id.profileName);
             profileEmail = findViewById(R.id.profileEmail);
             profilePhone = findViewById(R.id.profilePhone);
@@ -56,14 +66,50 @@ public class Profile extends AppCompatActivity {
             resetPassword = findViewById(R.id.resetPassword);
             profileImage = findViewById(R.id.profileImage);
             logout = findViewById(R.id.logout);
-            fAuth = FirebaseAuth.getInstance();
             fStore = FirebaseFirestore.getInstance();
             userID = fAuth.getCurrentUser().getUid();
             user = FirebaseAuth.getInstance().getCurrentUser();
             home = findViewById(R.id.home);
-            mail = findViewById(R.id.mail);
+            mail = findViewById(R.id.support);
             cart = findViewById(R.id.cart);
             profile = findViewById(R.id.profile);
+
+        FirebaseUser user = FirebaseAuth.getInstance().getCurrentUser();
+        if (user != null ) {
+            userEmail = user.getEmail();
+        } else {
+            Toast.makeText(Profile.this,"No user is Signed in",Toast.LENGTH_LONG).show();
+            Intent goToHome = new Intent(Profile.this, MainActivity.class);
+            startActivity(goToHome);
+        }
+        databaseReference = FirebaseDatabase.getInstance().getReference().child("UsersDetails");
+        storageReference = FirebaseStorage.getInstance().getReference("UsersDetails");
+        databaseReference.addValueEventListener(new ValueEventListener() {
+            @Override
+            public void onDataChange(@NonNull DataSnapshot snapshot) {
+                for(DataSnapshot dataSnapshot:snapshot.getChildren())
+                {
+                    name.add(dataSnapshot.child("name").getValue().toString());
+                    email.add(dataSnapshot.child("email").getValue().toString());
+                    phone.add(dataSnapshot.child("phone").getValue().toString());
+                }
+                for(int i=0;i<email.size();i++) {
+                   if (userEmail.equals(email.get(i))) {
+                        profileName.setText(name.get(i));
+                        profileEmail.setText(email.get(i));
+                        profilePhone.setText(phone.get(i));
+                       MainActivity3.finalIndexOfProfile=i;
+                        return;
+                    }
+                }
+
+            }
+
+            @Override
+            public void onCancelled(@NonNull DatabaseError error) {
+
+            }
+        });
 
         home.setOnClickListener(v -> {
             Intent goToHome = new Intent(Profile.this, MainActivity.class);
@@ -95,47 +141,9 @@ public class Profile extends AppCompatActivity {
                 }
             });
 
-
-     /* DocumentReference documentReference = fStore.collection("users").document(userID);
-        documentReference.addSnapshotListener(this, new EventListener<DocumentSnapshot>() {
-            @Override
-            public void onEvent(@Nullable DocumentSnapshot documentSnapshot, @Nullable FirebaseFirestoreException error) {
-                profileName.setText("Name" + " " + documentSnapshot.getString("name_"));
-                profileEmail.setText("Email" + " " + documentSnapshot.getString("email_"));
-                profilePhone.setText("Phone" + " " +  documentSnapshot.getString("phone_"));
-            }
-        });*/
-
-            DatabaseReference rootRef = FirebaseDatabase.getInstance().getReference();
-            DatabaseReference userRef = rootRef.child(USERS);
-            Log.v("USERID", userRef.getKey());
-
-            userRef.addValueEventListener(new ValueEventListener() {
-                String name, email, phone;
-
-                @Override
-                public void onDataChange(@NonNull DataSnapshot snapshot) {
-                    for (DataSnapshot keyId : snapshot.getChildren()) {
-                        if (keyId.child("email").getValue().equals(email)) {
-                            name = keyId.child("name").getValue(String.class);
-                            email = keyId.child("email").getValue(String.class);
-                            phone = keyId.child("phone").getValue(String.class);
-                            break;
-                        }
-                    }
-                    profileName.setText(name);
-                    profileEmail.setText(email);
-                    profilePhone.setText(phone);
-                }
-
-                @Override
-                public void onCancelled(@NonNull DatabaseError error) {
-                    // Failed to read value
-                    Toast.makeText(Profile.this, "Failed to load", Toast.LENGTH_SHORT).show();
-                }
-            });
         }
         public void logout (View view){
+
             FirebaseAuth.getInstance().signOut();//logout
             startActivity(new Intent(getApplicationContext(), MainActivity.class));
             finish();

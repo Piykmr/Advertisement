@@ -30,7 +30,7 @@ public class MainActivity2 extends AppCompatActivity {
         ColorDrawable colorDrawable = new ColorDrawable(Color.parseColor("#095566"));
         actionBar.setBackgroundDrawable(colorDrawable);
         home=findViewById(R.id.home);
-        mail=findViewById(R.id.mail);
+        mail=findViewById(R.id.support);
         login=findViewById(R.id.cart);
         increment=findViewById(R.id.increment);
         decrement=findViewById(R.id.decrement);

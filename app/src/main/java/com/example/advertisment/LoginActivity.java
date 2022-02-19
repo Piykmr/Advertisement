@@ -67,6 +67,14 @@ public class LoginActivity extends Fragment {
               fAuth.signInWithEmailAndPassword(email,password).addOnCompleteListener(task -> {
                    if(task.isSuccessful()){
                        Toast.makeText(getActivity(),"Logged In Successfully",Toast.LENGTH_SHORT).show();
+                       startActivity(new Intent(getActivity().getApplicationContext(),Profile.class));
+
+                           try {
+                               Thread.sleep(1000);
+                           } catch (InterruptedException e) {
+                               e.printStackTrace();
+                           }
+
                        startActivity(new Intent(getActivity().getApplicationContext(),MainActivity3.class));
                    }
                    else

@@ -43,7 +43,7 @@ public class Support extends AppCompatActivity {
         feedbackmsg=findViewById(R.id.feedbackmsg);
         callMe=findViewById(R.id.callMe);
         home=findViewById(R.id.home);
-        mail=findViewById(R.id.mail);
+        mail=findViewById(R.id.support);
         cart=findViewById(R.id.cart);
         profile=findViewById(R.id.profile);
 

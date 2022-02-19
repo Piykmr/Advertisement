@@ -1,12 +1,17 @@
 package com.example.advertisment;
 
 public class Model {
-    String name,email,address,phone;
-    public Model(String name, String email, String address, String phone) {
+    String name,email,address,phone,design;
+    int image;
+
+
+    public Model(String name, String email, String address, String phone, String design,int image) {
         this.name = name;
         this.email = email;
         this.address = address;
         this.phone = phone;
+        this.design = design;
+        this.image = image;
     }
 
 
@@ -17,6 +22,10 @@ public class Model {
     public void setName(String name) {
         this.name = name;
     }
+
+    public String getDesign() { return design; }
+
+    public void setDesign(String design) { this.design = design; }
 
     public String getEmail() {
         return email;
@@ -40,5 +49,11 @@ public class Model {
 
     public void setPhone(String phone) {
         this.phone = phone;
+    }
+
+    public int getImage() { return image; }
+
+    public void setImage(int image) {
+        this.image = image;
     }
 }

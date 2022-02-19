@@ -36,8 +36,9 @@ public class Admin extends AppCompatActivity {
     VideoView videoView;
     EditText editTextDesign, editTextPrice;
     ImageView imageViewBag, imageViewButton;
-    TextView textViewImage;
+    TextView textViewImage,goHome;
     ProgressDialog progressDialog ;
+
     private Uri imageUri;
     private DatabaseReference root = FirebaseDatabase.getInstance().getReference("BagDetails");
     private StorageReference storageReference = FirebaseStorage.getInstance().getReference("BagDetails");
@@ -53,6 +54,7 @@ public class Admin extends AppCompatActivity {
         imageViewBag = findViewById(R.id.imageViewBag);
         imageViewButton = findViewById(R.id.imageButton);
         textViewImage = findViewById(R.id.TextViewImage);
+        goHome=findViewById(R.id.goHome);
         progressDialog=new ProgressDialog(Admin.this);
         if (flag == 0) {
             FragmentManager fm = getSupportFragmentManager();
@@ -61,6 +63,13 @@ public class Admin extends AppCompatActivity {
             ft.commit();
 
         }
+        goHome.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(Admin.this,MainActivity.class);
+                startActivity(intent);
+            }
+        });
 
        textViewImage.setOnClickListener(v -> {
            Intent openGallary = new Intent(Intent.ACTION_PICK, MediaStore.Images.Media.EXTERNAL_CONTENT_URI);
