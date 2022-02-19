@@ -51,7 +51,7 @@ public class Profile extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         if(fAuth.getCurrentUser()==null)
         {
-            Intent intent = new Intent(Profile.this, IfEmpty.class);
+            Intent intent = new Intent(Profile.this, IfEmptyActvity.class);
             startActivity(intent);
             finish();
             Toast.makeText(Profile.this, "Not Logged In", Toast.LENGTH_SHORT).show();

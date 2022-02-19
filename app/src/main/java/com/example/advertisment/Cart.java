@@ -49,7 +49,7 @@ public class Cart extends AppCompatActivity {
             DB = new DBHelper(this);
             Cursor res = DB.getdata();
             if (res.getCount() == 0) {
-                Intent intent = new Intent(Cart.this, IfEmpty.class);
+                Intent intent = new Intent(Cart.this, IfEmptyActvity.class);
                 startActivity(intent);
                 finish();
                 Toast.makeText(Cart.this, "Cart is empty", Toast.LENGTH_SHORT).show();

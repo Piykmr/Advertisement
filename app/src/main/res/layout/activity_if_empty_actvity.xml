@@ -4,7 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".IfEmpty">
+    tools:context=".IfEmptyActvity">
 
     <ImageView
         android:id="@+id/imageView11"
@@ -50,5 +50,7 @@
         app:layout_constraintTop_toBottomOf="@+id/editTextTextMultiLine"
         app:layout_constraintVertical_bias="0.538"
         app:srcCompat="@drawable/homepage" />
+
+
 
 </androidx.constraintlayout.widget.ConstraintLayout>

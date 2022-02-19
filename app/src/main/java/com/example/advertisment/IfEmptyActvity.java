@@ -7,17 +7,17 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.ImageView;
 
-public class IfEmpty extends AppCompatActivity {
+public class IfEmptyActvity extends AppCompatActivity {
     ImageView homePage;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_if_empty);
+        setContentView(R.layout.activity_if_empty_actvity);
         homePage = findViewById(R.id.homePage);
         homePage.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent intent = new Intent(IfEmpty.this, MainActivity.class);
+                Intent intent = new Intent(IfEmptyActvity.this, MainActivity.class);
                 startActivity(intent);
             }
         });
